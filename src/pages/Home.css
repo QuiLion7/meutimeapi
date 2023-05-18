@@ -1,0 +1,118 @@
+.country-list {
+  text-align: center;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-gap: 20px;
+  justify-items: center;
+}
+
+.country-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  padding: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 120px;
+  height: 120px;
+}
+
+.country-card:hover {
+  background-color: #e0e0e0;
+}
+
+.country-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 80%;
+  height:40px;
+}
+
+.country-flag {
+  width: 100%;
+  max-width: 100px;
+  max-height: 75px;
+  /* height: auto; */
+  object-fit: contain;
+  background-color: yellow;
+  border-radius: 8px;
+}
+
+.no-image-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100px;
+  height: 75px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgb(255, 217, 255);
+}
+
+.show-more {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.slide-show-button {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.slide-show-button:hover {
+  background-color: #e0e0e0;
+}
+
+.slide-show {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.slide-show-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 200px; /* Ajuste a altura conforme necessário */
+}
+
+.slide-show-card:hover {
+  background-color: #e0e0e0;
+}
+
+@media (max-width: 600px) {
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
