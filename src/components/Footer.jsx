@@ -28,7 +28,7 @@ const Footer = () => {
         </li>
       </ul>
       
-      <p> Desenvolvido por Quilion oliveira &copy; 2023</p>
+      <p> Desenvolvido por Quilion Oliveira &copy; 2023</p>
     </footer>
   )
 }

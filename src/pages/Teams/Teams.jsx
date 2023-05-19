@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Players from '../Players/Players';
 import styles from './Teams.module.css';
 
 const Teams = ({ league, season, selectedLeagueName }) => {
   const [teams, setTeams] = useState([]);
   const [selectedTeamId, setSelectedTeamId] = useState(null);
+  const apiKey = localStorage.getItem('apiKey');
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -13,7 +13,7 @@ const Teams = ({ league, season, selectedLeagueName }) => {
       const options = {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': '05c56a153fmsh0316eea3b4a3172p18732ejsn2cf4ad161111',
+          'X-RapidAPI-Key': apiKey,
           'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
         },
       };
@@ -37,10 +37,14 @@ const Teams = ({ league, season, selectedLeagueName }) => {
     };
 
     fetchTeams();
-  }, [league, season]);
+  }, [league, season, apiKey]);
 
   const handleTeamClick = (teamId) => {
     setSelectedTeamId(teamId);
+  };
+
+  const handleChooseAgain = () => {
+    window.location.reload();
   };
 
   if (selectedTeamId) {
@@ -60,13 +64,29 @@ const Teams = ({ league, season, selectedLeagueName }) => {
             onClick={() => handleTeamClick(team.id)}
           >
             <h3>{team.name}</h3>
-            {team.logo && <img src={team.logo} alt={team.name} className={styles.logo} />}
+            {team.logo ? (
+              <img
+                src={team.logo}
+                alt={team.name}
+                className={styles.logo}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/balllogo.png';
+                }}
+              />
+            ) : (
+              <img
+                src="/balllogo.png"
+                alt="Sem logo"
+                className={styles.logo}
+              />
+            )}
           </div>
         ))}
       </div>
-      <Link to='/countrydetails/:country' className={styles.btn}>
-        Voltar
-      </Link>
+      <button className={styles.btn} onClick={handleChooseAgain}>
+        Escolher novamente
+      </button>
     </div>
   );
 };

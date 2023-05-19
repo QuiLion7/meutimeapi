@@ -1,13 +1,19 @@
 .navbar {
   display: flex;
-  box-shadow: rgba(0,0,0, 5) 0px 0px 10px 0px;
+  box-shadow: rgba(0,0,0, 0.5) 0px 0px 10px 0px;
   justify-content: space-between;
   align-items: center;
   padding: .5em 2em;
   height: 12vh;
   background: rgb(238,174,202);
   background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999; /* Valor alto para ficar na frente dos outros elementos */
 }
+
 
 .brand {
   font-size: 1.2em;

@@ -4,12 +4,14 @@ import { RiCloseLine } from 'react-icons/ri';
 import styles from './CountryDetails.module.css';
 import Teams from '../Teams/Teams';
 
-const CountryDetails = ({ country, handleSelectedLeague }) => {
+const CountryDetails = ({ country }) => {
   const [leagues, setLeagues] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedLeague, setSelectedLeague] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedSeason, setSelectedSeason] = useState('');
+  const [selectedLeagueId, setSelectedLeagueId] = useState(null);
+  const apiKey = localStorage.getItem('apiKey');
 
   useEffect(() => {
     const fetchLeagues = async () => {
@@ -22,7 +24,7 @@ const CountryDetails = ({ country, handleSelectedLeague }) => {
         const options = {
           method: 'GET',
           headers: {
-            'X-RapidAPI-Key': '05c56a153fmsh0316eea3b4a3172p18732ejsn2cf4ad161111',
+            'X-RapidAPI-Key': apiKey,
             'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
           },
         };
@@ -43,7 +45,7 @@ const CountryDetails = ({ country, handleSelectedLeague }) => {
     };
 
     fetchLeagues();
-  }, [country]);
+  }, [country, apiKey]);
 
   const openModal = (league) => {
     setSelectedLeague(league);
@@ -59,12 +61,18 @@ const CountryDetails = ({ country, handleSelectedLeague }) => {
   };
 
   const handleProceed = () => {
-    handleSelectedLeague(selectedLeague.league.id, selectedSeason);
+    setSelectedLeagueId(selectedLeague.league.id);
   };
 
-  if (selectedLeague && selectedSeason) {
-    return <Teams league={selectedLeague.league.id} season={selectedSeason} selectedLeagueName={selectedLeague.league.name} />;
+  if (selectedLeagueId && selectedSeason) {
+    return (
+      <Teams league={selectedLeagueId} season={selectedSeason} selectedLeagueName={selectedLeague.league.name} />
+    );
   }
+
+  const handleReload = () => {
+    window.location.reload();
+  };
 
   return (
     <div className={styles.countryDetails}>
@@ -86,16 +94,24 @@ const CountryDetails = ({ country, handleSelectedLeague }) => {
                     src={league.league.logo}
                     alt={league.league.name}
                     className={styles.logo}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '/balllogo.png';
+                    }}
                   />
                 ) : (
-                  <span>Sem logo</span>
+                  <img
+                    src="/balllogo.png"
+                    alt="Sem logo"
+                    className={styles.logo}
+                  />
                 )}
               </div>
             ))}
           </div>
-          <Link to="/" className={styles.btn}>
+          <button className={styles.btn} onClick={handleReload}>
             Voltar
-          </Link>
+          </button>
         </>
       )}
       {showModal && selectedLeague && (
@@ -115,7 +131,7 @@ const CountryDetails = ({ country, handleSelectedLeague }) => {
                 Selecione uma temporada
               </option>
               {selectedLeague.seasons
-                .sort((a, b) => b.year - a.year) // Ordena as temporadas em ordem decrescente
+                .sort((a, b) => b.year - a.year)
                 .map((season) => (
                   <option key={season.year} value={season.year}>
                     {season.year}

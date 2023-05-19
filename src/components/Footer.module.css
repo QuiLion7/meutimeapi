@@ -1,35 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-
-*:focus,
-*:active {
-  outline: none !important;
-  -webkit-tap-highlight-color: transparent;
-}
-
 .footer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: "Poppins", sans-serif;
-  width: 100%;
-  height: 13vh;
-  box-shadow: rgba(0,0,0, 5) 0px 1px 10px 0px;
-  background: rgb(148,187,233);
-  background: radial-gradient(circle, rgba(148,187,233,1) 0%, rgba(238,174,202,1) 100%);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+  padding: 1em;
+  height: auto;
+  min-height: 12vh;
+  margin-top: auto;
 }
 
 .footer p {
-  font-size: .9em;
-  margin: 0;
-  padding: 1em 0;
+  margin-top: 1em;
+  text-align: center;
 }
 
 .social_media {
-  display: inline-flex;
+  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
+  justify-content: center;
 }
 
 .social_media .icon {
@@ -50,7 +41,7 @@
 }
 
 .span_icon {
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;

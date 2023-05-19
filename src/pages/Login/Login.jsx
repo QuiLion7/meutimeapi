@@ -1,17 +1,16 @@
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 
-const Login = ({ onLogin }) => {
+const Login = () => {
   const [apiKey, setApiKey] = useState("");
-  const [isValidApiKey, setIsValidApiKey] = useState(false);
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const url = "https://api-football-v1.p.rapidapi.com/v3/teams/countries";
+    const url = "https://api-football-v1.p.rapidapi.com/v3/predictions?fixture=198772";
     const options = {
       method: "GET",
       headers: {
@@ -23,41 +22,22 @@ const Login = ({ onLogin }) => {
     try {
       const response = await fetch(url, options);
       if (response.ok) {
-        // Chave válida, permite o acesso à página Home
-        setIsValidApiKey(true);
+        localStorage.setItem("apiKey", apiKey);
+        navigate("/home");
       } else {
-        // Chave inválida, exibe mensagem de erro
-        setIsValidApiKey(false);
-        setIsButtonClicked(true);
+        setError("Erro ao fazer a requisição. Verifique sua API Key e tente novamente.");
       }
-      setApiKey(""); // Limpa o valor do input
+      setApiKey(""); 
     } catch (error) {
       console.error(error);
-      // Ocorreu um erro, exibe mensagem de erro
-      setIsValidApiKey(false);
-      setIsButtonClicked(true);
-      setApiKey(""); // Limpa o valor do input
+      setError("Ocorreu um erro ao fazer a requisição. Por favor, tente novamente mais tarde.");
+      setApiKey(""); 
     }
   };
 
   const handleInputChange = () => {
-    if (isButtonClicked) {
-      setIsButtonClicked(false); // Limpa as mensagens de erro
-    }
+    setError(""); 
   };
-
-  if (isValidApiKey) {
-    // Chave válida, redireciona para a página Home
-    return (
-      <div className={styles.login}>
-        <p>Chave válida, clique no botão abaixo para prosseguir:</p>
-        <button className="btn" onClick={() => onLogin(apiKey)}>
-          HOME
-        </button>
-        <p>ou clique em "Home" na barra de navegação</p>
-      </div>
-    );
-  }
 
   return (
     <div className={styles.login}>
@@ -73,17 +53,14 @@ const Login = ({ onLogin }) => {
             placeholder="API Key do usuário"
             value={apiKey}
             onChange={(event) => setApiKey(event.target.value)}
-            onFocus={handleInputChange} // Limpa as mensagens de erro ao selecionar o input
+            onFocus={handleInputChange}
           />
         </label>
         <button className="btn" type="submit">
           Entrar
         </button>
       </form>
-      {isButtonClicked && apiKey && !isValidApiKey && (
-        <p className="error">Chave inválida: tente outra.</p>
-      )}
-
+      {error && <p className="error">{error}</p>}
     </div>
   );
 };

@@ -29,6 +29,12 @@
   width: 150px;
   height: 170px;
   cursor: pointer;
+  background: rgb(148,187,233);
+  background: radial-gradient(circle, rgba(148,187,233,.7) 0%, rgba(238,174,202,.7) 100%);
+}
+
+.card:hover {
+  background-color: #e0e0e0;
 }
 
 .card h3 {
@@ -55,16 +61,20 @@
 
 .btn {
   display: inline-block;
-  background-color: #ccc;
+  background: rgb(238,174,202);
   color: #fff;
   padding: 10px 20px;
   border-radius: 4px;
   text-decoration: none;
   margin-top: 20px;
+  font-size: 1em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .btn:hover {
-  background-color: #999;
+  background: rgba(148,187,233,1);
 }
 
 .modalBackdrop {
@@ -135,16 +145,21 @@
 }
 
 .proceedButton {
-  background-color: #ccc;
+  display: inline-block;
+  background: rgb(238,174,202);
   color: #fff;
   padding: 10px 20px;
   border-radius: 4px;
   text-decoration: none;
   margin-top: 20px;
+  font-size: 1em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .proceedButton:hover {
-  background-color: #999;
+  background: rgba(148,187,233,1);
 }
 
 @media (max-width: 769px) {

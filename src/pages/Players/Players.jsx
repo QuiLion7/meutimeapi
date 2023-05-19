@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import styles from './Players.module.css';
 
-const Players = ({ team, season }) => {
+const Players = ({ id, season }) => {
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const apiKey = localStorage.getItem('apiKey');
 
   useEffect(() => {
     const fetchPlayers = async () => {
-      const url = `https://api-football-v1.p.rapidapi.com/v3/players?team=${team}&season=${season}`;
+      const url = `https://api-football-v1.p.rapidapi.com/v3/players?team=${id}&season=${season}`;
       const options = {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': '05c56a153fmsh0316eea3b4a3172p18732ejsn2cf4ad161111',
+          'X-RapidAPI-Key': apiKey,
           'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
         },
       };
@@ -21,13 +24,14 @@ const Players = ({ team, season }) => {
         if (response.ok) {
           const data = await response.json();
           const players = data.response.map((player) => ({
-            name: player.player.name,
-            age: player.player.age,
-            nationality: player.player.birth.nationality,
-            height: player.player.height,
-            weight: player.player.weight,
+            id: player.player.id,
+            name: player.player.name || 'Indisponível',
+            age: player.player.age || 'Indisponível',
+            height: player.player.height || 'Indisponível',
+            weight: player.player.weight || 'Indisponível',
             photo: player.player.photo,
           }));
+          players.sort((a, b) => a.name.localeCompare(b.name));
           setPlayers(players);
         } else {
           throw new Error('Erro ao fazer a requisição');
@@ -40,45 +44,67 @@ const Players = ({ team, season }) => {
     };
 
     fetchPlayers();
-  }, [team, season]);
+  }, [id, season, apiKey]);
+
+  const handleChooseAgain = () => {
+    window.location.reload();
+  };
+
+  const handleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
 
   if (loading) {
     return <p>Carregando...</p>;
   }
 
-  if (players.length === 0) {
-    return <p className={styles.message_error}>Informações dos jogadores não encontrada no banco de dados.</p>;
-  }
-
   return (
     <div className={styles.players}>
       <h1>Jogadores</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>Nacionalidade</th>
-            <th>Altura</th>
-            <th>Peso</th>
-            <th>Foto</th>
-          </tr>
-        </thead>
-        <tbody>
-          {players.map((player, index) => (
-            <tr key={index}>
-              <td>{player.name}</td>
-              <td>{player.age}</td>
-              <td>{player.nationality}</td>
-              <td>{player.height}</td>
-              <td>{player.weight}</td>
-              <td>
-                <img src={player.photo} alt={player.name} />
-              </td>
+      {players.length === 0 ? (
+        <p className={styles.message_error}>Informações dos jogadores não encontradas no banco de dados.</p>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Idade</th>
+              <th>Altura</th>
+              <th>Peso</th>
+              <th>
+                <button className={styles.collapse_button} onClick={handleCollapse}>
+                  {isCollapsed ? <FiChevronDown /> : <FiChevronUp />}
+                </button>
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          {!isCollapsed && (
+            <tbody>
+              {players.map((player) => (
+                <tr key={player.id}>
+                  <td>{player.name}</td>
+                  <td>{player.age}</td>
+                  <td>{player.height}</td>
+                  <td>{player.weight}</td>
+                  <td>
+                    <img
+                      src={player.photo || '/balllogo.png'}
+                      alt={player.name}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = '/balllogo.png';
+                      }}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          )}
+        </table>
+      )}
+      <button className={styles.btn} onClick={handleChooseAgain}>
+        ESCOLHER NOVAMENTE
+      </button>
     </div>
   );
 };

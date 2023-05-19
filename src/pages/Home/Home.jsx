@@ -9,6 +9,8 @@ const Home = () => {
   const [showMoreItems, setShowMoreItems] = useState(100);
   const [loading, setLoading] = useState(true);
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const [searchText, setSearchText] = useState('');
+  const apiKey = localStorage.getItem('apiKey');
 
   const getCountries = async () => {
     const cachedData = localStorage.getItem('cachedCountries');
@@ -20,7 +22,7 @@ const Home = () => {
       const options = {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': '05c56a153fmsh0316eea3b4a3172p18732ejsn2cf4ad161111',
+          'X-RapidAPI-Key': apiKey,
           'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
         }
       };
@@ -42,7 +44,7 @@ const Home = () => {
 
   useEffect(() => {
     getCountries();
-  }, []);
+  }, [apiKey]);
 
   const handleCountryClick = (country) => {
     setSelectedCountry(country);
@@ -51,6 +53,14 @@ const Home = () => {
   const handleShowMoreClick = () => {
     setShowMore(!showMore);
   };
+
+  const handleSearchChange = (event) => {
+    setSearchText(event.target.value);
+  };
+
+  const filteredCountries = countries.filter((country) =>
+    country.name.toLowerCase().includes(searchText.toLowerCase())
+  );
 
   const resizeObserverRef = useRef(null);
 
@@ -75,6 +85,11 @@ const Home = () => {
     };
   }, []);
 
+  if (!apiKey) {
+    window.location.href = '/login';
+    return null;
+  }
+
   if (loading) {
     return <p>Carregando...</p>;
   }
@@ -86,8 +101,18 @@ const Home = () => {
   return (
     <div className="country-list">
       <h1>Selecione o País</h1>
+      <div className="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          value={searchText}
+          onChange={handleSearchChange}
+          placeholder="Digite o nome do país desejado"
+          className="search-input"
+        />
+      </div>
       <div className="cards-container">
-        {countries && countries.slice(0, showMoreItems).map((country, index) => (
+        {filteredCountries.slice(0, showMoreItems).map((country, index) => (
           <div
             key={country.name}
             className="country-card"
@@ -97,27 +122,27 @@ const Home = () => {
             {country.flag ? (
               <img src={country.flag} alt={country.name} className="country-flag" />
             ) : (
-              <span className="no-image-text">Sem imagem</span>
+              <img src="./balllogo.png" alt="Sem imagem" className="country-flag" />
             )}
           </div>
         ))}
       </div>
-      {countries.length > showMoreItems && (
+      {filteredCountries.length > showMoreItems && (
         <div className="show-more">
           {showMore ? (
             <button className="slide-show-button" onClick={handleShowMoreClick}>
-              Mostrar Menos <RiArrowUpSLine className="show-more-icon" />
+              MOSTRAR MENOS <RiArrowUpSLine className="show-more-icon" />
             </button>
           ) : (
             <button className="slide-show-button" onClick={handleShowMoreClick}>
-              Mostrar Mais <RiArrowDownSLine className="show-more-icon" />
+              MOSTRAR MAIS <RiArrowDownSLine className="show-more-icon" />
             </button>
           )}
         </div>
       )}
       {showMore && (
         <div className="slide-show">
-          {countries.slice(showMoreItems).map((country) => (
+          {filteredCountries.slice(showMoreItems).map((country) => (
             <div
               key={country.name}
               className="slide-show-card"
@@ -127,7 +152,7 @@ const Home = () => {
               {country.flag ? (
                 <img src={country.flag} alt={country.name} className="country-flag" />
               ) : (
-                <span className="no-image-text">Sem imagem</span>
+                <img src="./balllogo.png" alt="Sem imagem" className="country-flag" />
               )}
             </div>
           ))}

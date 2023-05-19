@@ -23,13 +23,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f0f0f0;
   padding: 5px;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 120px;
   height: 120px;
+  background: rgb(148,187,233);
+  background: radial-gradient(circle, rgba(148,187,233,.8) 0%, rgba(238,174,202,.8) 100%);
 }
 
 .country-card:hover {
@@ -82,16 +83,21 @@
 }
 
 .slide-show-button {
+  display: inline-block;
+  background: rgb(238,174,202);
+  color: #fff;
   padding: 10px 20px;
-  background-color: #c4c4c4;
-  border: none;
-  border-radius: 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 20px;
+  font-size: 1em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .slide-show-button:hover {
-  background-color: #858585;
+  background: rgba(148,187,233,1);
 }
 
 .slide-show {
@@ -120,6 +126,28 @@
 .slide-show-card:hover {
   background-color: #e0e0e0;
 }
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+}
+
+.search-input {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease-in-out;
+  width: 250px;
+  text-align: center;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #8e44ad;
+}
+
 
 @media (max-width: 600px) {
   .cards-container {
