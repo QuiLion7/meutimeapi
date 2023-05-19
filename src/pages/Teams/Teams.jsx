@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Players from '../Players/Players';
 import styles from './Teams.module.css';
+import { useNavigate } from 'react-router-dom';
 
-const Teams = ({ league, season, selectedLeagueName }) => {
+const Teams = ({ league, season, selectedLeagueName, reset }) => {
   const [teams, setTeams] = useState([]);
   const [selectedTeamId, setSelectedTeamId] = useState(null);
   const apiKey = localStorage.getItem('apiKey');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -44,11 +46,15 @@ const Teams = ({ league, season, selectedLeagueName }) => {
   };
 
   const handleChooseAgain = () => {
-    window.location.reload();
+    reset();
   };
 
+  const resetSelectedTeam = () =>{
+    setSelectedTeamId(null);
+  }
+
   if (selectedTeamId) {
-    return <Players id={selectedTeamId} season={season} />;
+    return <Players reset={resetSelectedTeam} id={selectedTeamId} season={season} />;
   }
 
   return (

@@ -96,8 +96,12 @@ const Home = () => {
     return <p>Carregando...</p>;
   }
 
+  const reset = () => {
+    setSelectedCountry(null)
+  }
+
   if (selectedCountry) {
-    return <CountryDetails country={selectedCountry} />;
+    return <CountryDetails reset={reset} country={selectedCountry} />;
   }
 
   return (

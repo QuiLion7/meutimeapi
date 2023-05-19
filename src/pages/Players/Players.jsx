@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import styles from './Players.module.css';
+import { useNavigate } from 'react-router-dom';
 
-const Players = ({ id, season }) => {
+const Players = ({ id, season, reset }) => {
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const apiKey = localStorage.getItem('apiKey');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -47,7 +49,7 @@ const Players = ({ id, season }) => {
   }, [id, season, apiKey]);
 
   const handleChooseAgain = () => {
-    window.location.reload();
+    reset();
   };
 
   const handleCollapse = () => {
