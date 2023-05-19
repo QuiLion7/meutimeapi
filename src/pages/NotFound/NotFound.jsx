@@ -1,9 +1,16 @@
-import React from 'react'
+import styles from './NotFound.module.css';
 
 const NotFound = () => {
-  return (
-    <div>Não Encontrada</div>
-  )
-}
+  const handleRedirect = () => {
+    window.location.href = '/login';
+  };
 
-export default NotFound
+  return (
+    <div className={styles.not_found}>
+      <h1>Vamos Começar?</h1>
+      <button className={styles.btn} onClick={handleRedirect}>Clique Aqui</button>
+    </div>
+  );
+};
+
+export default NotFound;
