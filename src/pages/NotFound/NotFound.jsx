@@ -1,8 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './NotFound.module.css';
 
 const NotFound = () => {
+  const navigate = useNavigate();
+
   const handleRedirect = () => {
-    window.location.href = '/login';
+    navigate("/login");
   };
 
   return (

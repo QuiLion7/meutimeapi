@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import './Home.css';
 import CountryDetails from '../CountryDetails/CountryDetails';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
@@ -11,6 +12,8 @@ const Home = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [searchText, setSearchText] = useState('');
   const apiKey = localStorage.getItem('apiKey');
+  const apiKeyHasValue = apiKey !== null && apiKey !== undefined
+  const navigate = useNavigate();
 
   const getCountries = async () => {
     const cachedData = localStorage.getItem('cachedCountries');
@@ -44,7 +47,7 @@ const Home = () => {
 
   useEffect(() => {
     getCountries();
-  }, [apiKey]);
+  }, [apiKeyHasValue]);
 
   const handleCountryClick = (country) => {
     setSelectedCountry(country);
@@ -85,9 +88,8 @@ const Home = () => {
     };
   }, []);
 
-  if (!apiKey) {
-    window.location.href = '/login';
-    return null;
+  if (!apiKeyHasValue) {
+    return <Navigate to="/login" ></Navigate>
   }
 
   if (loading) {

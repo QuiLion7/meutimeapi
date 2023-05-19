@@ -1,11 +1,13 @@
 import styles from './Navbar.module.css';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
 
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.clear();
-    window.location.href = '/login';
+    navigate("/login");
   };
 
   return (
