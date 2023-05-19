@@ -1,12 +1,21 @@
 .country-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
   text-align: center;
+  padding: 1em;
 }
 
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  grid-gap: 20px;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  grid-gap: 15px;
   justify-items: center;
+  width: 100%;
+  padding: 1em;
 }
 
 .country-card {
@@ -33,22 +42,20 @@
   align-items: center;
   flex-wrap: wrap;
   margin: 0;
-  font-size: 16px;
+  font-size: 0.9em;
   font-weight: bold;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 80%;
-  height:40px;
+  width: 95%;
+  height: 50px;
 }
 
 .country-flag {
   width: 100%;
-  max-width: 100px;
-  max-height: 75px;
-  /* height: auto; */
-  object-fit: contain;
-  background-color: yellow;
+  max-width: 90px;
+  max-height: 65px;
+  object-fit: cover;
   border-radius: 8px;
 }
 
@@ -57,25 +64,26 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 100px;
+  max-width: 90px;
   height: 75px;
   background-color: #f0f0f0;
   border-radius: 8px;
   font-size: 14px;
   font-weight: bold;
   text-align: center;
-  background-color: rgb(255, 217, 255);
+  background: rgb(148,187,233);
+  background: radial-gradient(circle, rgba(148,187,233,1) 0%, rgba(238,174,202,1) 100%);
 }
 
 .show-more {
   display: flex;
   justify-content: flex-end;
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
 .slide-show-button {
   padding: 10px 20px;
-  background-color: #f0f0f0;
+  background-color: #c4c4c4;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -83,15 +91,16 @@
 }
 
 .slide-show-button:hover {
-  background-color: #e0e0e0;
+  background-color: #858585;
 }
 
 .slide-show {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  grid-gap: 15px;
   justify-items: center;
-  margin-top: 20px;
+  width: 100%;
+  padding: 1em;
 }
 
 .slide-show-card {
@@ -100,11 +109,12 @@
   align-items: center;
   justify-content: center;
   background-color: #f0f0f0;
-  padding: 20px;
+  padding: 5px;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  height: 200px; /* Ajuste a altura conforme necessário */
+  width: 120px;
+  height: 120px;
 }
 
 .slide-show-card:hover {
@@ -115,4 +125,9 @@
   .cards-container {
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
+}
+
+.show-more-icon {
+  margin-left: 5px;
+  vertical-align: middle;
 }

@@ -1,0 +1,50 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  height: 100%;
+  padding: 1em;
+}
+
+.login p {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin: 1em 0;
+  color: #aaa;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 310px;
+  width: 500px;
+}
+
+
+.login form label,
+.login form label span,
+.login form label input {
+  width: 100%;
+}
+
+.login form label input {
+  margin: 1em 0;
+  text-align: center;
+  font-size: 1em;
+}
+
+@media screen and (max-width: 460px) {
+  .login h1 {
+    font-size: 1.5em;
+  }
+
+  .login p {
+    font-size: .8em;
+  }
+}

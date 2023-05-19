@@ -1,0 +1,46 @@
+.players {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  padding: 1em;
+}
+.message_error {
+  display: flex;
+  align-items: center;
+  text-align: end;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.players h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.players table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.players th,
+.players td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.players th {
+  background-color: #f2f2f2;
+}
+
+.players img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+

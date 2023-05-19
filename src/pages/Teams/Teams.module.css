@@ -1,0 +1,136 @@
+.teams {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  padding: 1em;
+}
+
+.teams h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.teams p {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #ccc;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  background-color: #999;
+}
+
+.cardContainer {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 20px;
+  width: 100%;
+  padding: 1em;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 5px;
+  text-align: center;
+  width: 150px;
+  height: 170px;
+  cursor: pointer;
+}
+
+.card h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 95%;
+  height: 40px;
+}
+
+.logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-top: 10px;
+}
+
+@media (max-width: 769px) {
+  .cardContainer {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-gap: 15px;
+  }
+
+  .card {
+    width: 130px;
+    height: 150px;
+  }
+
+  .logo {
+    width: 75px;
+    height: 75px;
+  }
+
+  .teams h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .teams p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 426px) {
+  .cardContainer {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    grid-gap: 10px;
+  }
+
+  .card {
+    width: 90px;
+    height: 120px;
+  }
+
+  .card h3 {
+    font-size: 0.8em;
+  }
+
+  .logo {
+    width: 55px;
+    height: 55px;
+  }
+
+  .teams h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .teams p {
+    font-size: .9rem;
+    margin-bottom: 0.5rem;
+  }
+}
