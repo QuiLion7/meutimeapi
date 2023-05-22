@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { RiCloseLine } from 'react-icons/ri';
 import styles from './CountryDetails.module.css';
 import Teams from '../Teams/Teams';
@@ -12,7 +11,6 @@ const CountryDetails = ({ country, reset }) => {
   const [selectedSeason, setSelectedSeason] = useState('');
   const [selectedLeagueId, setSelectedLeagueId] = useState(null);
   const apiKey = localStorage.getItem('apiKey');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLeagues = async () => {
@@ -65,14 +63,19 @@ const CountryDetails = ({ country, reset }) => {
     setSelectedLeagueId(selectedLeague.league.id);
   };
 
-  const resetLeagueAndSeason = () =>{
+  const resetLeagueAndSeason = () => {
     setSelectedLeagueId(null);
     setSelectedSeason('');
-  }
+  };
 
   if (selectedLeagueId && selectedSeason) {
     return (
-      <Teams reset={resetLeagueAndSeason} league={selectedLeagueId} season={selectedSeason} selectedLeagueName={selectedLeague.league.name} />
+      <Teams
+        reset={resetLeagueAndSeason}
+        league={selectedLeagueId}
+        season={selectedSeason}
+        selectedLeagueName={selectedLeague.league.name}
+      />
     );
   }
 
@@ -116,7 +119,7 @@ const CountryDetails = ({ country, reset }) => {
             ))}
           </div>
           <button className={styles.btn} onClick={handleReload}>
-            Voltar
+            VOLTAR
           </button>
         </>
       )}

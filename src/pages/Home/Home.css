@@ -30,11 +30,11 @@
   width: 120px;
   height: 120px;
   background: rgb(148,187,233);
-  background: radial-gradient(circle, rgba(148,187,233,.8) 0%, rgba(238,174,202,.8) 100%);
+  background: radial-gradient(circle, rgba(148,187,233,.4) 0%, rgba(238,174,202,.4) 100%);
 }
 
 .country-card:hover {
-  background-color: #e0e0e0;
+  background: radial-gradient(circle, rgba(148,187,233) 0%, rgba(238,174,202) 100%);
 }
 
 .country-title {
@@ -58,6 +58,9 @@
   max-height: 65px;
   object-fit: cover;
   border-radius: 8px;
+}
+.country-flag:hover {
+  margin: 5px;
 }
 
 .no-image-text {
@@ -121,10 +124,11 @@
   transition: background-color 0.3s ease;
   width: 120px;
   height: 120px;
+  background: radial-gradient(circle, rgba(148,187,233,.4) 0%, rgba(238,174,202,.4) 100%);
 }
 
 .slide-show-card:hover {
-  background-color: #e0e0e0;
+  background: radial-gradient(circle, rgba(148,187,233) 0%, rgba(238,174,202) 100%);
 }
 
 .search-bar {
@@ -141,6 +145,7 @@
   transition: border-color 0.3s ease-in-out;
   width: 250px;
   text-align: center;
+  background:rgba(255, 255, 255, .6);
 }
 
 .search-input:focus {

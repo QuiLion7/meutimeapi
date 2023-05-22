@@ -41,11 +41,20 @@ const Login = () => {
 
   return (
     <div className={styles.login}>
-      <h1>Chave API Key</h1>
-      <p>Faça o login para poder utilizar o sistema</p>
+      <h1>Meu Time</h1>
+      <p>
+        A API utilizada neste projeto é uma ferramenta poderosa para acessar informações e estatísticas de times esportivos. 
+        Ela oferece uma ampla gama de dados, como jogadores, estatísticas de partidas, classificações e muito mais. 
+      </p>
+      <p>
+      No entanto, para acessar e utilizar essa API, é necessário se inscrever no site oficial e obter uma chave de API exclusiva.
+      A chave de API é essencial para autenticar suas solicitações e garantir que apenas usuários autorizados tenham acesso aos dados.
+      </p>
+      <a href="https://rapidapi.com/api-sports/api/api-football" target="_blank">Por isso, siga as etapas de registro no site oficial da API 
+        e digite sua RapidAPI-Key para fazer login e utilizar o sistema.
+      </a> 
       <form onSubmit={handleSubmit}>
         <label>
-          <span>API Key:</span>
           <input
             type="text"
             name="apikey"

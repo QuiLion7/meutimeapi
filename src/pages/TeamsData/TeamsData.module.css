@@ -1,0 +1,47 @@
+.teams {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin: 1em;
+}
+
+.teams table {
+  padding: 0;
+  margin: 0;
+  width: 90%;
+  max-width: 400px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.charts {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+.charts_minutes {
+  width: 100%;
+  max-width: 500px;
+  margin: .5em;
+  border: 2px dashed rgba(0, 0, 0, .5);
+  background: radial-gradient(circle, rgba(148,187,233,.4) 0%, rgba(238,174,202,.4) 100%);  border: 2px dashed rgba(0, 0, 0, .5);
+}
+
+.charts_minutes:hover {
+  background: radial-gradient(circle, rgba(148,187,233,1) 0%, rgba(238,174,202,1) 100%);  border: 2px dashed rgba(0, 0, 0, .5);
+}
+
+@media (max-width: 651px) {
+  .charts {
+    flex-direction: column;
+    font-size: .7em;
+  }
+}

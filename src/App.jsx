@@ -17,7 +17,7 @@ import Players from './pages/Players/Players';
 function App() {
   return (
     <div className="App">
-      <div className="modal-background"></div>
+      <div className="background"></div>
       <BrowserRouter>
         <Navbar />
         <div className="container">

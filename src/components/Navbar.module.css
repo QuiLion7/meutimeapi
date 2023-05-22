@@ -11,14 +11,17 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9999; /* Valor alto para ficar na frente dos outros elementos */
+  z-index: 9999;
 }
-
 
 .brand {
   font-size: 1.2em;
   margin-bottom: .3em;
   text-align: center;
+}
+
+.brand img {
+  width: 70px;
 }
 
 .brand span {
@@ -58,17 +61,24 @@
     align-items: center;
     justify-content: center;
   }
+
   .brand {
     font-size: 1em;
+  }
+
+  .brand img {
+    width: 50px;
   }
   .links_list {
     font-size: .85em;
     justify-content: center;
     margin: 0;
   }
+
   .links_list li {
     margin-right: .5em;
   }
+
   .links_list li a {
     padding: .4em .3em;
   }

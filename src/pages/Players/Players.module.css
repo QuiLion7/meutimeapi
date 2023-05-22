@@ -10,6 +10,27 @@
   margin: 1em;
 }
 
+.header {
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+}
+
+.header h1 {
+  margin-right: .5em;
+}
+
+.header .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: auto;
+  background-color: violet;
+}
+
 .btn {
   display: inline-block;
   background: rgb(238, 174, 202);
@@ -38,7 +59,7 @@
 
 .players h1 {
   font-size: 1.8em;
-  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 .players table {
@@ -47,6 +68,7 @@
   margin-bottom: 20px;
   font-weight: bold;
   text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .players th,
@@ -54,19 +76,35 @@
   padding: 3px;
   text-align: center;
   border-bottom: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .players th {
-  background-color: rgba(238, 174, 202, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: rgba(150, 186, 232, 0.8);
   color: #fff;
 }
 
+.players th:hover {
+  background-color: rgba(150, 186, 232);
+}
+
 .players tr:nth-child(even) {
-  background-color: rgba(248, 243, 249, 0.9);
+  background-color: rgba(187, 182, 220, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.players tr:nth-child(even):hover {
+  background-color: rgba(187, 182, 220);
 }
 
 .players tr:nth-child(odd) {
-  background-color: rgba(253, 218, 228, 0.9);
+  background-color: rgba(228, 194, 209, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.players tr:nth-child(odd):hover {
+  background-color: rgba(228, 194, 209);
 }
 
 .players img {
@@ -84,7 +122,7 @@
 
 @media (max-width: 426px) {
   .players table {
-    font-size: .8em;
+    font-size: .7em;
   }
   .players img {
     width: 40px;

@@ -2,7 +2,6 @@ import styles from './Navbar.module.css';
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -10,24 +9,25 @@ const Navbar = () => {
     navigate("/login");
   };
 
+  const apiKeyExists = localStorage.getItem("apiKey");
+
   return (
     <nav className={styles.navbar}>
-      <NavLink to='/login' className={styles.brand}>
-        Meu <span>Time</span>
+      <NavLink to='/home' className={styles.brand}>
+        <img src="/balllogo.png" alt="Sem logo" className={styles.logo} />
       </NavLink>
       <ul className={styles.links_list}>
         <li>
-          <NavLink to='/login' className={({ isActive }) => (isActive ? styles.active : '')}>
-            Login
-          </NavLink>
+          {apiKeyExists && (
+            <NavLink to='/home' className={({ isActive }) => (isActive ? styles.active : '')}>
+              Home
+            </NavLink>
+          )}
         </li>
         <li>
-          <NavLink to='/home' className={({ isActive }) => (isActive ? styles.active : '')}>
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <button onClick={handleLogout}>Sair</button>
+          {apiKeyExists && (
+            <button onClick={handleLogout}>Sair</button>
+          )}
         </li>
       </ul>
     </nav>

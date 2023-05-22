@@ -30,11 +30,11 @@
   height: 170px;
   cursor: pointer;
   background: rgb(148,187,233);
-  background: radial-gradient(circle, rgba(148,187,233,.7) 0%, rgba(238,174,202,.7) 100%);
+  background: radial-gradient(circle, rgba(148,187,233,.4) 0%, rgba(238,174,202,.4) 100%);
 }
 
 .card:hover {
-  background-color: #e0e0e0;
+  background: radial-gradient(circle, rgba(148,187,233) 0%, rgba(238,174,202) 100%);
 }
 
 .card h3 {
@@ -57,6 +57,10 @@
   height: 90px;
   object-fit: contain;
   margin-top: 10px;
+}
+
+.logo:hover {
+  margin: 5px;
 }
 
 .btn {
@@ -96,7 +100,7 @@
   justify-content: center;
   text-align: center;
   position: relative;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 20px;
   border-radius: 8px;
   width: 768px;
@@ -142,6 +146,9 @@
   color: #000;
   cursor: pointer;
   font-size: 24px;
+}
+.closeButton:hover {
+  color: #ff0000;
 }
 
 .proceedButton {

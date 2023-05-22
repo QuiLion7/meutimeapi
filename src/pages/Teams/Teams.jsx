@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Players from '../Players/Players';
 import styles from './Teams.module.css';
-import { useNavigate } from 'react-router-dom';
 
 const Teams = ({ league, season, selectedLeagueName, reset }) => {
   const [teams, setTeams] = useState([]);
   const [selectedTeamId, setSelectedTeamId] = useState(null);
   const apiKey = localStorage.getItem('apiKey');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTeams = async () => {
@@ -21,17 +19,24 @@ const Teams = ({ league, season, selectedLeagueName, reset }) => {
       };
 
       try {
-        const response = await fetch(url, options);
-        if (response.ok) {
-          const data = await response.json();
-          const teams = data.response[0].league.standings[0].map((team) => ({
-            id: team.team.id,
-            name: team.team.name,
-            logo: team.team.logo,
-          }));
-          setTeams(teams);
+        let savedTeams = localStorage.getItem('teams');
+        if (savedTeams) {
+          savedTeams = JSON.parse(savedTeams);
+          setTeams(savedTeams);
         } else {
-          throw new Error('Erro ao fazer a requisição');
+          const response = await fetch(url, options);
+          if (response.ok) {
+            const data = await response.json();
+            const teams = data.response[0].league.standings[0].map((team) => ({
+              id: team.team.id,
+              name: team.team.name,
+              logo: team.team.logo,
+            }));
+            setTeams(teams);
+            localStorage.setItem('teams', JSON.stringify(teams));
+          } else {
+            throw new Error('Erro ao fazer a requisição');
+          }
         }
       } catch (error) {
         console.error(error);
@@ -49,12 +54,25 @@ const Teams = ({ league, season, selectedLeagueName, reset }) => {
     reset();
   };
 
-  const resetSelectedTeam = () =>{
+  const resetSelectedTeam = () => {
     setSelectedTeamId(null);
-  }
+  };
 
   if (selectedTeamId) {
-    return <Players reset={resetSelectedTeam} id={selectedTeamId} season={season} />;
+    const selectedTeam = teams.find((team) => team.id === selectedTeamId);
+    if (selectedTeam) {
+      const { id, name, logo } = selectedTeam;
+      return (
+        <Players
+          reset={resetSelectedTeam}
+          id={id}
+          league={league}
+          season={season}
+          teamName={name}
+          teamLogo={logo}
+        />
+      );
+    }
   }
 
   return (
@@ -91,7 +109,7 @@ const Teams = ({ league, season, selectedLeagueName, reset }) => {
         ))}
       </div>
       <button className={styles.btn} onClick={handleChooseAgain}>
-        Escolher novamente
+        VOLTAR
       </button>
     </div>
   );

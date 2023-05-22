@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import './Home.css';
 import CountryDetails from '../CountryDetails/CountryDetails';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
@@ -12,8 +12,7 @@ const Home = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [searchText, setSearchText] = useState('');
   const apiKey = localStorage.getItem('apiKey');
-  const apiKeyHasValue = apiKey !== null && apiKey !== undefined
-  const navigate = useNavigate();
+  const apiKeyHasValue = apiKey !== null && apiKey !== undefined;
 
   const getCountries = async () => {
     const cachedData = localStorage.getItem('cachedCountries');
@@ -26,8 +25,8 @@ const Home = () => {
         method: 'GET',
         headers: {
           'X-RapidAPI-Key': apiKey,
-          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
-        }
+          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
+        },
       };
 
       try {
@@ -89,7 +88,7 @@ const Home = () => {
   }, []);
 
   if (!apiKeyHasValue) {
-    return <Navigate to="/login" ></Navigate>
+    return <Navigate to="/login" />;
   }
 
   if (loading) {
@@ -97,8 +96,8 @@ const Home = () => {
   }
 
   const reset = () => {
-    setSelectedCountry(null)
-  }
+    setSelectedCountry(null);
+  };
 
   if (selectedCountry) {
     return <CountryDetails reset={reset} country={selectedCountry} />;
@@ -128,7 +127,7 @@ const Home = () => {
             {country.flag ? (
               <img src={country.flag} alt={country.name} className="country-flag" />
             ) : (
-              <img src="./balllogo.png" alt="Sem imagem" className="country-flag" />
+              <img src="/balllogo.png" alt="Sem imagem" className="country-flag" />
             )}
           </div>
         ))}

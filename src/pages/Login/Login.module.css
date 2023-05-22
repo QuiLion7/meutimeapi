@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 100%;
+  max-width: 1080px;
   text-align: center;
   height: 100%;
   padding: 1em;
@@ -13,8 +13,23 @@
   display: flex;
   text-align: center;
   align-items: center;
-  margin: 1em 0;
-  color: #aaa;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1080px;
+  margin: .5em 0;
+  color: #000000;
+  text-align: justify;
+  line-height: 1.8em;
+}
+.login a {
+  text-decoration: none;
+  margin: .5em 0;
+  font-weight:600;
+  line-height: 1.8em;
+}
+
+.login a:hover {
+  color:rgba(148,187,233,1)
 }
 
 .login form {
@@ -22,13 +37,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 310px;
-  width: 500px;
+  width: 100%;
+  max-width: 1080px;
 }
 
 
 .login form label,
-.login form label span,
 .login form label input {
   width: 100%;
 }
@@ -36,7 +50,10 @@
 .login form label input {
   margin: 1em 0;
   text-align: center;
-  font-size: 1em;
+  font-size: 1.2em;
+  padding: 2px;
+  max-width: 550px;
+  background-color: rgba(255, 255, 255, .8);
 }
 
 @media screen and (max-width: 460px) {
@@ -44,7 +61,8 @@
     font-size: 1.5em;
   }
 
-  .login p {
+  .login p,
+  .login a {
     font-size: .8em;
   }
 }
